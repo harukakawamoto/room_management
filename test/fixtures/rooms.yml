@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  room_number: MyString
+  type: 
+  name: MyString
+  start_time: 2022-09-11 19:28:33
+  finish_time: 2022-09-11 19:28:33
+  memo: MyText
+
+two:
+  room_number: MyString
+  type: 
+  name: MyString
+  start_time: 2022-09-11 19:28:33
+  finish_time: 2022-09-11 19:28:33
+  memo: MyText

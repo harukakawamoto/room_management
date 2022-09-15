@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RoomManagement</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    
+  </head>
+
+  <body>
+    <div class="text-center">  
+      
+      <% flash.each do |message_type, message| %>
+        <%if message == "ログインしました"%>
+          <div class="p-3 bg-success text-white">
+            <%= message %>
+          </div>
+        <% end %>
+        <%if message == "変更を反映しました"%>
+          <div class="p-3 bg-success text-white">
+            <%= message %>
+          </div>
+        <% end %>
+        <%if message == "部屋情報をすべてリセットしました"%>
+          <div class="p-3 bg-success text-white">
+            <%= message %>
+          </div>
+        <% end %>
+        <%if message == "権限がありません"%>
+          <div class="p-3 bg-danger text-white">
+            <%= message %>
+          </div>
+        <% end %>
+      <% end %>
+        
+    </div>
+    <% if session[:user_id] %>
+      <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="#">清掃状況管理ツール</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                  <li class="nav-item">
+                      <a class="nav-link" href="/room/select_floor">階選択<span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/user/<%= session[:user_id]%>">共有事項</a>
+                  </li>
+                  <% if session[:user_admin] %>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/user/admin/share_edit">共有事項編集</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/user/admin/floor_edit">部屋情報編集</a>
+                    </li>
+                  <% end %>
+                  <li class="nav-item">
+                      <a class="nav-link" href="/logout">ログアウト</a>
+                  </li>
+              </ul>
+          </div>
+        </nav>
+
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+
+      </header>
+    <% end %> 
+
+    <div class="container">
+      <%= yield %> 
+    </div>  
+  </body>
+</html>

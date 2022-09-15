@@ -1,0 +1,82 @@
+<div class="text-center">
+<h1><%= @room_info.stuation %></h1>
+<table class="table">
+    <tbody>
+    <tr>
+        <td>部屋番号</td>
+        <td><%= @room_num %></td>
+    </tr>
+    <tr>
+        <td>部屋タイプ</td>
+        <td>
+        <div>
+        <%= @room_info.default_type %>
+        </div>
+        <% if @room_info.room_type != "指定なし" %>
+        <div>
+        <%= @room_info.room_type %>
+        </div>
+        <% end %>
+        </td>
+    </tr>
+    <tr>
+        <td>ステータス</td>
+        <td><%= @room_info.status %></td>
+    </tr>
+    <% if @room_info.status == "清掃中" %>
+    <tr>
+        <td>担当者名</td>
+        <td><%= @room_info.name %></td>
+    </tr>
+    <tr>
+        <td>清掃開始時間</td>
+        <td><%= @room_info.start_time.hour %>:<%= @room_info.start_time.min %></td>
+    </tr>
+    <% end %>
+    <% if @room_info.status == "清掃済み" %>
+    <tr>
+        <td>担当者名</td>
+        <td><%= @room_info.name %></td>
+    </tr>
+    <tr>
+        <td>清掃開始時間</td>
+        <td><%= @room_info.start_time.hour %>:<%= @room_info.start_time.min %></td>
+    </tr>
+    <tr>
+        <td>清掃終了時間</td>
+        <td><%= @room_info.finish_time.hour %>:<%= @room_info.finish_time.min %></td>
+    </tr>
+    <tr>
+        <td>清掃時間</td>
+        <td><%= @clearn_time %>分</td>
+    </tr>
+    <% end %>
+</table>
+
+<% if @room_info.status == "未清掃" %>
+<%= form_tag("/room/select_rooms/#{@floor_num}/#{@room_num}/start") do %>
+
+    <div class="input-group mb-3">
+        
+        <input type="text" class="form-control" placeholder="担当者名" aria-label="Username" aria-describedby="basic-addon1" name="name" required>
+    </div>
+
+    <div class="text-center">
+        <button type="submit" class="btn btn-light">清掃開始</button>
+    </div>
+<% end %> 
+<% end %> 
+
+<% if @room_info.status == "清掃中" %>
+<%= form_tag("/room/select_rooms/#{@floor_num}/#{@room_num}/stop") do %>
+
+    <div class="text-center">
+        <button type="submit" class="btn btn-light">清掃終了</button>
+    </div>
+<% end %> 
+<% end %> 
+<div class="text-left">
+        <%= link_to("部屋選択に戻る", "/room/select_rooms/#{@floor_num}") %>
+
+</div>
+</div>

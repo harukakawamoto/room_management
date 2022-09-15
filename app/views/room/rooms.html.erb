@@ -1,0 +1,42 @@
+<div class="text-center">
+<table class="table caption-top">
+  <thead>
+    <tr>
+      <th scope="col">Room_number</th>
+      <th scope="col">status</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% if ['9','10','11','12'].include?(@floor_num) == false %>
+    <% room_num = ['31','32','33','34','35','36','37','38','39','40','41','51','52','53','54','55','56'] %>
+  <% elsif @floor_num=='9' %>
+    <% room_num = ['31','33','34','35','36','37','38','39','40','41','51','52','53','54','55','56'] %>
+  <% else %>
+    <% room_num = ['31','32','33','36','37','38','39','40','41','51','52','53','54','55','56'] %>
+  <% end %>  
+  
+  <% room_num.each do |num| %>
+  <% situation = Room.find_by(room_number:@floor_num+num).stuation %>
+  <% status = Room.find_by(room_number:@floor_num+num).status %>
+    <% if situation=="アウト部屋" and status != "清掃済み"  %>
+      <tr class="table-danger">
+
+    <% elsif situation=="ステイメイク" and status != "清掃済み" %>
+      <tr class="table-success">
+    <% else %>
+      <tr>
+    <% end %> 
+        <td><%= @floor_num+num %></td>
+        <td><%= status %></td>
+        <td><%= link_to("詳細", "/room/select_rooms/#{@floor_num}/#{@floor_num+num}") %></td>
+      </tr>
+    </tbody>
+  <% end %> 
+</table>
+
+</div>
+<div class="text-left mt-4 mb-4">
+        <%= link_to("フロア選択に戻る", "/room/select_floor") %>
+
+</div>

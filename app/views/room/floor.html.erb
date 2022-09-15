@@ -1,0 +1,21 @@
+<table class="table caption-top">
+  <thead>
+    <tr class="text-center">
+      <th scope="col">Floor</th>
+      <th scope="col">残り清掃数</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% floor_num=['4','5','6','7','8','9','10','11','12'] %>
+    <% floor_num.each do |num| %>
+      <tr class="text-center">
+      
+        <td><%= num %></td>
+        <td><%= Room.where(floor_number:num, stuation:"アウト部屋", status:"未清掃").count + Room.where(floor_number:num, stuation:"ステイメイク", status:"未清掃").count  %></td>
+        <td><%= link_to("詳細","/room/select_rooms/#{num}") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

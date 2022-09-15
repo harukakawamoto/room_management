@@ -1,0 +1,28 @@
+<div class="text-center">
+  <%= form_tag("/user/admin/share_edited") do %>
+    <h1>共有事項編集</h1>
+    <table class="table">
+      <tbody class="text-center">
+        <tr>
+          <th scope="row">内線</th>
+          <td><input name="phone_number" value="<%= @admin_info.phone_number %>"></td>
+        </tr>
+        <tr>
+          <th scope="row">どんでん</th>
+          <td><input name="donden" placeholder="部屋数を入力" required></td>
+        </tr>
+        <tr>
+          <th scope="row">ステイ</th>
+          <td><input name="stay" placeholder="部屋数を入力" required></td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    <h1>お知らせ</h1>
+    <div class="form-floating">
+      <textarea class="form-control"  id="floatingTextarea2" style="height: 300px" name="info"><%= @admin_info.info %></textarea>
+    </div>
+    <button type="submit" class="btn btn-light mt-4">変更</button>
+  <% end %>
+</div>

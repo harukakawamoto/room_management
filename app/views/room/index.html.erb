@@ -1,0 +1,24 @@
+<h1 class="text-center">共有事項</h1>
+<% admin_info =  Admin.find_by(id:1) %>
+<table class="table">
+  <tbody class="text-center">
+    <tr>
+      <th scope="row">内線</th>
+      <td><%= admin_info.phone_number %></td>
+    </tr>
+    <tr>
+      <th scope="row">どんでん</th>
+      <td><%= admin_info.donden %></td>
+    </tr>
+    <tr>
+      <th scope="row">ステイ</th>
+      <td><%= admin_info.stay %></td>
+    </tr>
+  </tbody>
+</table>
+
+
+<h1 class="text-center">お知らせ</h1>
+<div class="border">
+  <%= simple_format(admin_info.info) %>
+</div>

@@ -1,0 +1,43 @@
+<div class="text-center">
+  <% if ['9','10','11','12'].include?(@floor_num) == false %>
+    <% room_num = ['31','32','33','34','35','36','37','38','39','40','41','51','52','53','54','55','56'] %>
+  <% elsif @floor_num=='9' %>
+    <% room_num = ['31','33','34','35','36','37','38','39','40','41','51','52','53','54','55','56'] %>
+  <% else %>
+    <% room_num = ['31','32','33','36','37','38','39','40','41','51','52','53','54','55','56'] %>
+  <% end %>  
+<h1>部屋情報編集</h1>
+<%=  form_tag("/user/admin/rooms_edited/#{@floor_num}") %>
+<table class="table caption-top">
+  <thead>
+    <tr>
+      <th scope="col">Room_Number</th>
+      <th scope="col">Room_type</th>
+      <th scope="col">Situation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% room_num.each do |num|%>
+    <% room_info = Room.find_by(room_number:@floor_num+num) %>
+      <tr>
+        <td><%= @floor_num+num %></td>
+        <td>
+          <div>
+          <%= select_tag "info[#{@floor_num+num}][type]",options_for_select([['指定なし', '指定なし'], ['Trundle', 'Trundle'], ['SuperKing', 'SuperKing'], ['Trundle+SuperKing', 'Trundle+SuperKing']],room_info.room_type) %>
+          </div>
+        </td>
+        <td>
+          <div>
+          <%= select_tag "info[#{@floor_num+num}][situation]", options_for_select([['清掃不要', '清掃不要'], ['どんでん', 'アウト部屋'], ['ステイ', 'ステイメイク']],room_info.stuation) %>
+          </div>
+        </td>
+      </tr>
+    <% end %>  
+  </tbody>
+</table>
+<button type="submit" class="btn btn-light mt-4 mb-4">変更</button>
+
+</div>
+<div class="text-left mt-4 mb-4">
+        <%= link_to("フロア選択に戻る", "/user/admin/floor_edit") %>
+</div>
