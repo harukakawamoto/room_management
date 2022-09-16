@@ -66,14 +66,14 @@ statusには未清掃・清掃中・清掃済みの３つの状態がありま�
 
 <img width="1512" alt="スクリーンショット 2022-09-16 14 54 03" src="https://user-images.githubusercontent.com/86188830/190566449-3e95932f-fa8c-4093-8bc6-68fc06558fac.png">
 
-Room_typeは指定なし・Trundle・SuperKing・Trundle+SuperKingの４項目がある。必要に応じて変更する。
+Room_typeは指定なし・Trundle・SuperKing・Trundle+SuperKingの４項目があります。必要に応じて変更します。
 
 初期値は指定なし。
 
-situationはでんどん・ステイ・清掃不要に3項目がある。
+situationはでんどん・ステイ・清掃不要に3項目があります。
 
-初期値は清掃不要。
+初期値は清掃不要が選択されています。
 
 <img width="1512" alt="スクリーンショット 2022-09-16 14 54 20" src="https://user-images.githubusercontent.com/86188830/190566503-877ee539-baaf-418a-af00-847c85a63a16.png">
 
-変更ボタンを押すと変更が反映される。
+変更ボタンを押すと変更が反映されます。
