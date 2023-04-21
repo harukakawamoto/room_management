@@ -1,4 +1,4 @@
-# https://roommanagementryucho.herokuapp.com/
+
 # 清掃状況管理ツール
 ## 機能
 ### 各階の部屋の残り清掃数の確認
